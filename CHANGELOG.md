@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Renamed plugin class to PageBreakPlugin in `main.ts`
 - Replaced default license with MIT License in `LICENSE`
 - Replaced default metadata with plugin-specific data in `manifest.json`
 - Replaced default metadata with plugin-specific data in `package.json`

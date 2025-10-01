@@ -1,7 +1,7 @@
 import {Plugin} from 'obsidian';
 
 
-export default class MyPlugin extends Plugin {
+export default class PageBreakPlugin extends Plugin {
 
 	async onload() {
 
