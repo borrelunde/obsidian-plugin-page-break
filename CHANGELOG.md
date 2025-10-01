@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced default metadata with plugin-specific data in `package.json`
 - Replaced default version with version 0.0.1 in `versions.json`
 
+### Removed
+
+- Removed sample code in `main.ts`
+
 ## 0.0.1 - 2025-10-01
 
 - Generated from the Obsidian plugin template
