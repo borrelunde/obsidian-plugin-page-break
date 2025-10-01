@@ -1,5 +1,5 @@
 {
-	"name": "page-break",
+	"name": "obsidian-plugin-page-break",
 	"version": "0.0.1",
 	"description": "Lets you insert page breaks in your notes. Useful for printing.",
 	"main": "main.js",
