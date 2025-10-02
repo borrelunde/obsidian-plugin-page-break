@@ -1,8 +1,45 @@
 /*
+ * Unresolved properties are Obsidian colour variables to work with themes.
+ */
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+/* Page break with a dashed line. */
+.page-break {
+	display: block;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	border-top: 1px dashed var(--background-modifier-border);
+	text-align: center;
+	color: var(--text-faint);
+}
 
-If your plugin does not need CSS, delete this file.
+/* Label on the dashed page break line. */
+.page-break .page-break-label {
+	/* Positions the label on the dashed line. */
+	display: inline-block;
+	position: relative;
+	top: -0.9rem; /* Matches the font size for vertical positioning. */
 
-*/
+	font-size: 0.9em;
+	background-color: var(--background-primary);
+	padding-left: 0.25rem;
+	padding-right: 0.25rem;
+}
+
+
+/* Styles that are only applied when printing. */
+@media print {
+
+	/* Force page breaks. */
+	.page-break {
+		break-before: page;
+		border: 0;
+		margin: 0;
+		padding: 0;
+		height: 0;
+	}
+
+	/* Hide the label. */
+	.page-break .page-break-label {
+		display: none;
+	}
+}

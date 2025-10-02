@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added an editor menu item to insert a page break
+- Added a command to insert a page break
+- Added styling for page breaks
+
 ### Fixed
 
 - Renamed plugin class to PageBreakPlugin in `main.ts`
