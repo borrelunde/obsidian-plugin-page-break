@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added brief plugin-specific information in `README.md`
 - Added an editor menu item to insert a page break
 - Added a command to insert a page break
 - Added styling for page breaks
@@ -23,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Removed sample information in `README.md`
 - Removed sample code in `main.ts`
 
 ## 0.0.1 - 2025-10-01
