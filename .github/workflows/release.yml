@@ -1,0 +1,60 @@
+name: Release
+
+on:
+    push:
+        tags:
+            - 'v*.*.*'  # Match tags that follow semantic versioning. For example, 'v1.4.7'.
+
+permissions:
+    contents: write  # Write permission is required to create a GitHub Release.
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+
+        steps:
+            # Check out the code so the job can access it.
+            -   name: Checkout
+                uses: actions/checkout@v4
+
+            # Set up Node.js 20 because NPM is used in the next steps.
+            -   name: Use Node.js 20
+                uses: actions/setup-node@v4
+                with:
+                    node-version: 20
+                    cache: npm
+
+            # Install the dependencies.
+            -   name: Install dependencies
+                run: npm ci  # The same as running `npm install`, but 'npm ci' is faster and more reliable for
+                # continuous integration.
+
+            # Build the plugin.
+            -   name: Build
+                run: npm run build
+
+            # Verify that the version in 'manifest.json' matches the version in 'package.json'.
+            -   name: Verify 'manifest.json' version matches 'package.json' version
+                run: node ./scripts/verify-version.js
+
+            # Verify that the tag matches the version in 'package.json'.
+            -   name: Verify tag matches package version
+                run: |
+                    TAG="${GITHUB_REF_NAME}"
+                    VERSION="v$(node -p "require('./package.json').version")"
+                    if [ "$TAG" != "$VERSION" ]; then
+                      echo "Tag $TAG does not match package version $VERSION"
+                      exit 1
+                    fi
+                    echo "Tag matches package version."
+
+            # Create a GitHub Release and supply assets manifest.json, main.js and styles.css, which Obsidian expects.
+            -   name: Create GitHub Release
+                uses: softprops/action-gh-release@v2
+                with:
+                    files: |
+                        manifest.json
+                        main.js
+                        styles.css
+                env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # A token that GitHub creates every workflow run.

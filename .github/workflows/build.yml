@@ -1,0 +1,51 @@
+name: Build
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+
+permissions:
+    contents: read
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            # Check out the code so the job can access it.
+            -   name: Checkout
+                uses: actions/checkout@v4
+
+            # Set up Node.js 20 because NPM is used in the next steps.
+            -   name: Use Node.js 20
+                uses: actions/setup-node@v4
+                with:
+                    node-version: 20
+                    cache: npm  # The next time the workflow runs, it will be faster because it won't have to
+                    # re-download the dependencies.
+
+            # Install the dependencies.
+            -   name: Install dependencies
+                run: npm ci  # The same as running `npm install`, but 'npm ci' is faster and more reliable for
+                # continuous integration.
+
+            # Check the code for errors (such as missing semicolons, incorrect indentation, etc.) with the linter.
+            -   name: Lint
+                run: npm run lint --if-present
+
+            # Run the tests.
+            # There are none, but who knows what might be added in the future.
+            -   name: Test
+                run: npm test --if-present
+
+            # Build the project.
+            -   name: Build
+                run: npm run build
+
+            # Verify that the version in 'manifest.json' matches the version in 'package.json'.
+            -   name: Verify 'manifest.json' version matches 'package.json' version
+                run: node ./scripts/verify-version.js
