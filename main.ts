@@ -35,5 +35,12 @@ export default class PageBreakPlugin extends Plugin {
 		const pageBreak =
 			'<div class="page-break"><span class="page-break-label">Page break. An empty line after the break is required.</span></div>\n';
 		editor.replaceRange(pageBreak, cursor);
+
+		// Move the cursor position to the end of the page break.
+		const endOfPageBreak = {
+			line: cursor.line + 1,
+			ch: 0
+		};
+		editor.setCursor(endOfPageBreak);
 	}
 }
