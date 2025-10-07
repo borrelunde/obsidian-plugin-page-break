@@ -19,6 +19,11 @@ export default class PageBreakPlugin extends Plugin {
 		this.addCommand({
 			id: 'insert-page-break',
 			name: 'Insert page break',
+			// The hotkey is Ctrl+Shift+Enter on Windows and Linux, and Cmd+Shift+Enter on Mac.
+			hotkeys: [{
+				modifiers: ['Mod', 'Shift'],
+				key: 'Enter'
+			}],
 			editorCallback: (editor) => {
 				this.insertPageBreakAtCursor(editor);
 			}
