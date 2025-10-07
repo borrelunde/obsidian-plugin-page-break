@@ -10,7 +10,7 @@ export default class PageBreakPlugin extends Plugin {
 			menu.addItem((item) => {
 				item.setTitle('Insert page break')
 					.setIcon('minus')
-					.onClick(() => this.insertPageBreakAtCursor(editor))
+					.onClick(() => this.insertPageBreak(editor))
 					.setSection('page-break');
 			});
 		}));
@@ -25,12 +25,12 @@ export default class PageBreakPlugin extends Plugin {
 				key: 'Enter'
 			}],
 			editorCallback: (editor) => {
-				this.insertPageBreakAtCursor(editor);
+				this.insertPageBreak(editor);
 			}
 		});
 	}
 
-	private insertPageBreakAtCursor(editor: Editor) {
+	private insertPageBreak(editor: Editor) {
 		const cursor = editor.getCursor();
 		const pageBreak =
 			'<div class="page-break"><span class="page-break-label">Page break. An empty line after the break is required.</span></div>\n';
