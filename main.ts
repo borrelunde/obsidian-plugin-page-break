@@ -1,7 +1,10 @@
-import {Editor, Plugin} from 'obsidian';
+import {Plugin} from 'obsidian';
+import {PageBreakInserter} from "./PageBreakInserter";
 
 
 export default class PageBreakPlugin extends Plugin {
+
+	private readonly pageBreakInserter = PageBreakInserter.create();
 
 	async onload() {
 		// Registers an item in the editor menu (the menu that appears when you
@@ -10,7 +13,7 @@ export default class PageBreakPlugin extends Plugin {
 			menu.addItem((item) => {
 				item.setTitle('Insert page break')
 					.setIcon('minus')
-					.onClick(() => this.insertPageBreak(editor))
+					.onClick(() => this.pageBreakInserter.insertPageBreak(editor))
 					.setSection('page-break');
 			});
 		}));
@@ -25,22 +28,8 @@ export default class PageBreakPlugin extends Plugin {
 				key: 'Enter'
 			}],
 			editorCallback: (editor) => {
-				this.insertPageBreak(editor);
+				this.pageBreakInserter.insertPageBreak(editor);
 			}
 		});
-	}
-
-	private insertPageBreak(editor: Editor) {
-		const cursor = editor.getCursor();
-		const pageBreak =
-			'<div class="page-break"><span class="page-break-label">Page break. An empty line after the break is required.</span></div>\n';
-		editor.replaceRange(pageBreak, cursor);
-
-		// Move the cursor position to the end of the page break.
-		const endOfPageBreak = {
-			line: cursor.line + 1,
-			ch: 0
-		};
-		editor.setCursor(endOfPageBreak);
 	}
 }
