@@ -1,5 +1,5 @@
 import {Plugin} from 'obsidian';
-import {PageBreakInserter} from "./page-break-inserter";
+import {PageBreakInserter} from "./PageBreakInserter";
 
 
 export default class PageBreakPlugin extends Plugin {
