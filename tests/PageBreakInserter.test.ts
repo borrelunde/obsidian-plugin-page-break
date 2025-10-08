@@ -1,4 +1,4 @@
-import {PageBreakInserter} from "./src/PageBreakInserter";
+import {PageBreakInserter} from "../src/PageBreakInserter";
 import {Editor} from "obsidian";
 
 describe('PageBreakInserter', () => {
