@@ -16,6 +16,8 @@ jobs:
             # Check out the code so the job can access it.
             -   name: Checkout
                 uses: actions/checkout@v4
+                with:
+                    fetch-depth: '0'  # Fetch the full history for release notes generation
 
             # Set up Node.js 20 because NPM is used in the next steps.
             -   name: Use Node.js 20
@@ -50,10 +52,8 @@ jobs:
 
             # Fetch all tags and history for the changelog generation.
             -   name: Fetch full git history
-                run: git fetch --prune --unshallow --tags
+                run: git fetch --prune --tags
                 # --prune removes references to deleted remote branches.
-                # --unshallow converts shallow clones to full clones with complete history. Needed for semantic-release
-                #   to analyse all commits since the last release.
                 # --tags fetches all tags. Needed for semantic-release to identify previous releases and determine which
                 #   commits are new.
 
