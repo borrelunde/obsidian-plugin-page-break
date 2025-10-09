@@ -48,10 +48,26 @@ jobs:
                     fi
                     echo "Tag matches package version."
 
+            # Fetch all tags and history for the changelog generation.
+            -   name: Fetch full git history
+                run: git fetch --prune --unshallow --tags
+                # --prune removes references to deleted remote branches.
+                # --unshallow converts shallow clones to full clones with complete history. Needed for semantic-release
+                #   to analyse all commits since the last release.
+                # --tags fetches all tags. Needed for semantic-release to identify previous releases and determine which
+                #   commits are new.
+
+            # Generate release notes from commits since the last tag.
+            -   name: Generate release notes
+                run: npx semantic-release --dry-run  # dry run prevents semantic-release from creating a release, it only generates the notes.
+                env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
             # Create a GitHub Release and supply assets manifest.json, main.js and styles.css, which Obsidian expects.
             -   name: Create GitHub Release
                 uses: softprops/action-gh-release@v2
                 with:
+                    body_path: RELEASE_NOTES.md
                     files: |
                         manifest.json
                         main.js
