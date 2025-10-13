@@ -1,9 +1,7 @@
 name: Release
 
 on:
-    push:
-        tags:
-            - 'v*.*.*'  # Match tags that follow semantic versioning. For example, 'v1.4.7'.
+    workflow_dispatch:  # Manual trigger from GitHub Actions
 
 permissions:
     contents: write  # Write permission is required to create a GitHub Release.
