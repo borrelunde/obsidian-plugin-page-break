@@ -17,6 +17,7 @@ jobs:
                 uses: actions/checkout@v4
                 with:
                     fetch-depth: '0'
+                    token: ${{ secrets.PAT_TOKEN }}
 
             # Set up Node.js 20 because NPM is used in the next steps.
             -   name: Use Node.js 20
