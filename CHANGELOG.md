@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/borrelunde/obsidian-plugin-page-break/compare/v1.0.0...v1.1.0) (2025-10-13)
+
+
+### Bug Fixes
+
+* move cursor to end of page break ([#10](https://github.com/borrelunde/obsidian-plugin-page-break/issues/10)) ([dcbd6ad](https://github.com/borrelunde/obsidian-plugin-page-break/commit/dcbd6ad21b21a26b9d121f6f3bab8b8cdff1c704))
+
+
+### Features
+
+* add a default hotkey for inserting page break ([#8](https://github.com/borrelunde/obsidian-plugin-page-break/issues/8)) ([9f41af2](https://github.com/borrelunde/obsidian-plugin-page-break/commit/9f41af2b39ff03129184410e6901b4392664e0a5))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
