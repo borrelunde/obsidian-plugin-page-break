@@ -12,7 +12,12 @@
 				"changelogFile": "CHANGELOG.md"
 			}
 		],
-		"@semantic-release/npm",
+		[
+			"@semantic-release/npm",
+			{
+				"npmPublish": false
+			}
+		],
 		[
 			"@semantic-release/exec",
 			{
@@ -29,7 +34,7 @@
 					"versions.json",
 					"CHANGELOG.md"
 				],
-				"message:": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+				"message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
 			}
 		],
 		[
