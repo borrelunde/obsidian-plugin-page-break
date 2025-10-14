@@ -1,6 +1,14 @@
 import { readFileSync, writeFileSync } from "fs";
 
-const targetVersion = process.env.npm_package_version;
+// Prioritize command-line argument (from semantic-release) over npm environment variable.
+const targetVersion = process.argv[2] || process.env.npm_package_version;
+
+if (!targetVersion) {
+	console.error("Error: No version provided.");
+	console.error("Usage: node version-bump.mjs <version>");
+	console.error("Or run via npm script where npm_package_version is set.");
+	process.exit(1);
+}
 
 // Read minAppVersion from manifest.json and bump the version to the target version.
 const manifest = JSON.parse(readFileSync("manifest.json", "utf8"));
