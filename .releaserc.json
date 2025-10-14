@@ -21,7 +21,7 @@
 		[
 			"@semantic-release/exec",
 			{
-				"prepareCmd": "node version-bump.mjs && echo '${nextRelease.notes}' > RELEASE_NOTES.md"
+				"prepareCmd": "node version-bump.mjs ${nextRelease.version} && echo '${nextRelease.notes}' > RELEASE_NOTES.md"
 			}
 		],
 		[
